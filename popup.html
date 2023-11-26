@@ -2,10 +2,33 @@
 <html lang=en>
 <meta charset=utf-8>
 <head>
-    <link rel="stylesheet" href="button.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<button id="changeColor"></button>
-<script src="popup.js"></script>
+    <div id="popup">
+        <header>
+            <img src="images\icons8-color-32.png" alt="AdBalance Logo" height="30">
+            <h1>AdBalance</h1>
+        </header>
+        <div class="slider-container">
+            <label for="levelSlider" class="slider-label">Level: <span id="levelValue">1</span></label>
+            <input type="range" id="levelSlider" class="slider" min="0" max="5" value="1">
+        </div>
+        <div class="info">
+            <div class="ad-info">
+                <span><b>Resolution:</b> </span>
+                <span id="resolutionValue">720p60</span>
+            </div>
+            <div class="ad-info">
+                <span><b>Ad (30s):</b> </span>
+                <span id="ad30sCount">3</span>
+            </div>
+            <div class="ad-info">
+                <span><b>Ad (5s):</b> </span>
+                <span id="ad5sCount">1</span>
+            </div>
+        </div>
+    </div>
+    <script src="popup.js"></script>
 </body>
 </html>
