@@ -2,7 +2,7 @@ let popupTimer; // 팝업을 닫기 위한 타이머 변수
 let popup; // 팝업 창 객체
 
 let urls = ['https://www.youtube.com/watch?v=F2tZreXYZdo', 'https://www.youtube.com/watch?v=yoG7gqet7nY&list=LL&index=70'];
-let level = 3;
+let level = 0;
 let order = 0;
 
 function isYouTubePage() {
