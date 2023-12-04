@@ -101,6 +101,6 @@ if (isYouTubePage()) {
   } else if (level == 4) {
     cycle(new Array('30', '30'));
   } else if (level == 5) {
-    cycle(new Array('30', '30', '30', '5', '5'));
+    cycle(new Array('30', '30', '5', '5'));
   }
 }
