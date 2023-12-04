@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+const cors = require('cors');
+router.use(cors());
+
 const url1 = 'https://www.youtube.com/watch?v=p_7WsfD4KUY';
 const url2 = 'https://www.youtube.com/watch?v=sW9kJ0fOKWY';
 const url3 = 'https://www.youtube.com/watch?v=upKuFIIORgI';
