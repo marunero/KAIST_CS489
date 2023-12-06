@@ -23,5 +23,5 @@ To run the server, follow these steps:
 5. You can now access the server by opening a web browser and navigating to `http://localhost:3000`.
 
 ## How to load chrome extension
-1. Go to [chrome://extensions/] and check the box for Developer mode in the top right.
+1. Go to [chrome://extensions/](chrome://extensions/) and check the box for Developer mode in the top right.
 2. Click the Load unpacked extension button and select the unzipped folder (./UI) to install it.
