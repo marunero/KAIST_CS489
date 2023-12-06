@@ -2,8 +2,33 @@ let popupTimer; // 팝업을 닫기 위한 타이머 변수
 let popup; // 팝업 창 객체
 
 let urls = ['https://www.youtube.com/watch?v=F2tZreXYZdo', 'https://www.youtube.com/watch?v=yoG7gqet7nY&list=LL&index=70'];
-let level = 3;
+let level = 1;
 let order = 0;
+
+var levelSlider = document.getElementById('levelSlider');
+var levelValue = document.getElementById('levelValue');
+var resolutionValue = document.getElementById('resolutionValue');
+var ad30sCount = document.getElementById('ad30sCount');
+var ad5sCount = document.getElementById('ad5sCount');
+
+var levels = [
+    { resolution: '480p30', ad30s: 0, ad5s: 0 },
+    { resolution: '720p30', ad30s: 0, ad5s: 1 },
+    { resolution: '720p60', ad30s: 1, ad5s: 0 },
+    { resolution: '1080p30', ad30s: 1, ad5s: 1 },
+    { resolution: '1080p60', ad30s: 2, ad5s: 0 },
+    { resolution: '4K30', ad30s: 3, ad5s: 2 }
+];
+
+// load last update level from background.js
+chrome.storage.sync.get("level_save", ({ level_save }) => {
+    levelSlider.value = level_save;
+    levelValue.textContent = level_save;
+    level = level_save;
+    resolutionValue.textContent = levels[level].resolution;
+    ad30sCount.textContent = levels[level].ad30s;
+    ad5sCount.textContent = levels[level].ad5s;
+  });
 
 function sendGetRequest(level) {
 
@@ -25,27 +50,13 @@ function sendGetRequest(level) {
             .catch(error => {
                 console.log(error)
             });
-    } else {
+    } 
+    else {
         console.error('Invalid level value. Please enter a number between 1 and 5.');
     }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  var levelSlider = document.getElementById('levelSlider');
-  var levelValue = document.getElementById('levelValue');
-  var resolutionValue = document.getElementById('resolutionValue');
-  var ad30sCount = document.getElementById('ad30sCount');
-  var ad5sCount = document.getElementById('ad5sCount');
-
-  var levels = [
-      { resolution: '480p30', ad30s: 0, ad5s: 0 },
-      { resolution: '720p30', ad30s: 0, ad5s: 1 },
-      { resolution: '720p60', ad30s: 1, ad5s: 0 },
-      { resolution: '1080p30', ad30s: 1, ad5s: 1 },
-      { resolution: '1080p60', ad30s: 2, ad5s: 0 },
-      { resolution: '4K30', ad30s: 3, ad5s: 2 }
-  ];
-
   function updateUI(lev) {
       levelValue.textContent = lev;
       level = lev
@@ -57,12 +68,16 @@ document.addEventListener('DOMContentLoaded', function() {
   levelSlider.oninput = function() {
       updateUI(this.value);
       sendGetRequest(this.value);
+
+      let level_save = this.value 
+      // save current level in background
+      chrome.storage.sync.set({ level_save });
   };
 
   // 초기 UI 설정
-  updateUI(levelSlider.value);
-  
+    updateUI(level)
 });
+
 
 function getRequest(){
     var levelSlider = document.getElementById('levelSlider');
