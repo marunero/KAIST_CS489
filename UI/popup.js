@@ -20,7 +20,7 @@ function sendGetRequest(level) {
 
                 // TODO
                 // add contentScript.js function
-                data = urls
+                urls = data.urls
             })
             .catch(error => {
                 console.log(error)
@@ -72,8 +72,6 @@ function getRequest(){
 let apply = document.getElementById("Apply");
 
 apply.addEventListener("click", async () => { 
-
-    console.log("hi")
     
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         if (tabs.length > 0) {
