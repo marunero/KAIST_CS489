@@ -20,7 +20,7 @@ function selectQuality() {
   const settingsButton = document.getElementsByClassName("ytp-settings-button")[0];
   if (settingsButton) {
     settingsButton.click();
-    setTimeout(chooseQuality, 500); // 1초(1000ms) 후 화질 선택 함수 호출
+    setTimeout(chooseQuality, 500); // 타임아웃 후 화질 선택 함수 호출
   }
 }
 
@@ -31,10 +31,10 @@ function chooseQuality() {
     setTimeout(() => {
       const desiredQualityOption = [...document.getElementsByClassName("ytp-menuitem")][5-level];
       if (desiredQualityOption) {
-        desiredQualityOption.click(); // 두 번째 화질을 선택하는 클릭 이벤트 발생
-        setTimeout(disableQuality, 500); // 화질 선택 후 1초 뒤에 비활성화 함수 호출
+        desiredQualityOption.click(); // 레벨에 따라 단계별로 해당하는 화질 선택
+        setTimeout(disableQuality, 500); // 화질 선택 후 비활성화 함수 호출
       }
-    }, 1000); // 0.5초(500ms) 후 화질 선택 로직 실행
+    }, 1000);
   }
 }
 
