@@ -90,9 +90,7 @@ function cycle(runtimes) {
 if (isYouTubePage()) {
   selectQuality();
 
-  if (level == 0) {
-    playVideo();
-  } else if (level == 1) {
+  if (level == 1) {
     cycle(new Array('5'));
   } else if (level == 2) {
     cycle(new Array('30'));
