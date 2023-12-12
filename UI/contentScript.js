@@ -6,7 +6,7 @@ let level = 0;
 let order = 0;
 
 function isYouTubePage() {
-  return window.location.hostname.includes('youtube.com');
+  return window.location.href.includes('youtube.com/watch');
 }
 
 function clickPauseButton() {
