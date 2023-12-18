@@ -1,5 +1,5 @@
-let popupTimer; // 팝업을 닫기 위한 타이머 변수
-let popup; // 팝업 창 객체
+let popupTimer;
+let popup;
 
 let urls = ['https://www.youtube.com/watch?v=F2tZreXYZdo', 'https://www.youtube.com/watch?v=yoG7gqet7nY&list=LL&index=70'];
 let level = 0;
@@ -12,7 +12,7 @@ function isYouTubePage() {
 function clickPauseButton() {
   const video = document.querySelector('video');
   if (video) {
-    video.pause(); // 동영상 일시 정지
+    video.pause(); // Pause the video, no matter what current condition is
   }
 }
 
@@ -20,7 +20,7 @@ function selectQuality() {
   const settingsButton = document.getElementsByClassName("ytp-settings-button")[0];
   if (settingsButton) {
     settingsButton.click();
-    setTimeout(chooseQuality, 500); // 타임아웃 후 화질 선택 함수 호출
+    setTimeout(chooseQuality, 500);
   }
 }
 
@@ -31,8 +31,8 @@ function chooseQuality() {
     setTimeout(() => {
       const desiredQualityOption = [...document.getElementsByClassName("ytp-menuitem")][5-level];
       if (desiredQualityOption) {
-        desiredQualityOption.click(); // 레벨에 따라 단계별로 해당하는 화질 선택
-        setTimeout(disableQuality, 500); // 화질 선택 후 비활성화 함수 호출
+        desiredQualityOption.click(); // Choose the quality based on the level
+        setTimeout(disableQuality, 500);
       }
     }, 1000);
   }
@@ -56,23 +56,23 @@ function openPopup(url) {
 function playVideo() {
   const video = document.querySelector('video');
   if (video && video.paused) {
-    video.play(); // 동영상 다시 재생
+    video.play();
   }
 }
 
 function cycle(runtimes) {
-  clickPauseButton(); // 유튜브 동영상 일시 정지
-  openPopup(urls[order]); // 팝업 열기
+  clickPauseButton(); // Pause the video
+  openPopup(urls[order]); // Open pop-up ad
 
   var i = 0;
   var popupTimer = 0;
   var timer = setInterval(function() { 
     if (popupTimer<runtimes[i] && popup.closed) {
       popupTimer = 0;
-      openPopup(urls[order]); // 팝업을 수동으로 닫았을 때 새로운 팝업 열기
+      openPopup(urls[order]); // Open pop-up ad again if it is closed manually
     }
     if (popupTimer>=runtimes[i] && popup && !popup.closed) {
-      popup.close(); // 일정 시간 후에 팝업 닫기
+      popup.close(); // Close the pop-up ad after the guaranteed time passed
       order++;
       i++;
       if (i<runtimes.length) {
@@ -80,7 +80,7 @@ function cycle(runtimes) {
         popupTimer = 0;
       } else {
         clearInterval(timer);
-        playVideo(); // 팝업이 닫힐 때 동영상 다시 재생
+        playVideo(); // Play the video when all pop-up ads are closed normally
       }
     }
     popupTimer++;
